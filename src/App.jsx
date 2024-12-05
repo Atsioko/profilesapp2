@@ -107,6 +107,7 @@ export default function App() {
           >
             <View>
               <Heading level="3">{userprofile.email}</Heading>
+              <Heading level="2">Yay I think I got this</Heading>
             </View>
           </Flex>
         ))}
