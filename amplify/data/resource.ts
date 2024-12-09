@@ -8,6 +8,7 @@ and "delete" any "Todo" records.
 =========================================================================*/
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 import { postConfirmation } from "../auth/post-confirmation/resource";
+import { sayHello } from "../functions/say-hello/resource"
 
 const schema = a
   .schema({
@@ -19,6 +20,13 @@ const schema = a
       .authorization((allow) => [
         allow.ownerDefinedIn("profileOwner"),
       ]),
+    sayHello: a
+      .query()
+      .arguments({
+        name: a.string()
+      })
+      .returns(a.string())
+      .handler(a.handler.function(sayHello))  
   })
   .authorization((allow) => [allow.resource(postConfirmation)]);
 export type Schema = ClientSchema<typeof schema>;
