@@ -81,20 +81,45 @@ export default function App() {
   }
 
   return (
-    <button
-      onClick={() => {
-        window.location.href = './test.jsx'; // Replace with your file path
-      }}
-      style={{
-        padding: '10px 20px',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-      }}
+    <Flex
+      className="App"
+      justifyContent="center"
+      alignItems="center"
+      direction="column"
+      width="70%"
+      margin="0 auto"
     >
-      Open File
-    </button>
+      <Heading level={1}>My Profile</Heading>
+
+      <Divider />
+
+      <Grid
+        margin="3rem 0"
+        autoFlow="column"
+        justifyContent="center"
+        gap="2rem"
+        alignContent="center"
+      >
+        {userprofiles.map((userprofile) => (
+          <Flex
+            key={userprofile.id || userprofile.email}
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            gap="2rem"
+            border="1px solid #ccc"
+            padding="2rem"
+            borderRadius="5%"
+            className="box"
+          >
+            <View>
+              <Heading level="3">{userprofile.email}</Heading>
+              <Heading level="2">Yay I think I got this</Heading>
+            </View>
+          </Flex>
+        ))}
+      </Grid>
+      <Button onClick={signOut}>Sign Out</Button>
+    </Flex>
   );
 }
